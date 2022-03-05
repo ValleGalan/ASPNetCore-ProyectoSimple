@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Lista de cursos";
 }
+<!--PALETA :  https://colorhunt.co/palette/f9e4d4d67d3e9c0f48470d21    -->
 <!--TODO HTML-->
 <p class="text-center"> Mira los cursos</p>
 
@@ -55,7 +56,7 @@
                             <td>@Html.DisplayFor(m=>item.FechaCreacion)</td>
                             <td>
                                 <a asp-route-id="@item.id" asp-page="Editar" class="btn-primary btn-success btn-sm">Editar</a>
-                                <button asp-page-handler="Borrar" asp-route-id="@item.id" onclick="return confirm('esta seguro?') btn-danger btn-sm">Borrar</button>
+                                <button asp-page-handler="Borrar" asp-route-id="@item.id" onclick="return confirm('esta seguro?')" class="btn-danger btn-sm">Borrar</button>
                             </td>
                         </tr>
                     }
