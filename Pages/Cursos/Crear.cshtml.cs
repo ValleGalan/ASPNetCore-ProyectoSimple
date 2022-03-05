@@ -16,16 +16,24 @@ namespace AppNetRazor.Pages.Cursos
         //propiedad de vinculacion 
         [BindProperty]
         public Curso Curso { get; set; }   //vincula al formulario
+        [TempData]
+        public string Mensaje { get; set; } //para la notificacion
 
         public void OnGet()
         {
         }
         public async Task<IActionResult> OnPost()
         {
-            if (!ModelState.IsValid) { return Page(); }
+            if (!ModelState.IsValid)
+            {
+                return Page(); 
+            }
             Curso.FechaCreacion = DateTime.Now;
+
             _contexto.Add(Curso);
             await _contexto.SaveChangesAsync();
+            Mensaje = "Curso creado correctamente";
+
             return RedirectToPage("Index");
         }
         

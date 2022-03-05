@@ -1,3 +1,5 @@
+using AppNetRazor.Cursos;
+using AppNetRazor.Datos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -5,8 +7,39 @@ namespace AppNetRazor.Pages.Cursos
 {
     public class EditarModel : PageModel
     {
-        public void OnGet()
+        //VA LA FUNCIONALIDAD EN C#, con esto ya puedo usar razor en html
+        private readonly ApplicationDbContext _contexto;
+        public EditarModel(ApplicationDbContext contexto)
         {
+            _contexto = contexto;
+        }
+        //propiedad de vinculacion al formulario
+        [BindProperty]
+        public Curso Curso { get; set; }
+        [TempData]
+        public string Mensaje { get; set; } //para la notificacion
+
+        public async Task OnGet(int id) 
+        {
+            Curso = await _contexto.Curso.FindAsync(id);//busque por id
+        }
+        public async Task<IActionResult> OnPost()
+        {
+            if (ModelState.IsValid)
+            {
+                var CursoDesdeBD = await _contexto.Curso.FindAsync(Curso.id);
+
+                CursoDesdeBD.NombreCurso = Curso.NombreCurso;
+                CursoDesdeBD.CantidadClases = Curso.CantidadClases;
+                CursoDesdeBD.Precio = Curso.Precio;
+                 
+                await _contexto.SaveChangesAsync();
+                Mensaje = "Curso editado correctamente";
+                return RedirectToPage("Index");
+
+            }
+            
+            return RedirectToPage(); //en la misma pagina
         }
     }
 }

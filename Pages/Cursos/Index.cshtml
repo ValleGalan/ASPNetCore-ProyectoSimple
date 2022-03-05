@@ -4,7 +4,23 @@
     ViewData["Title"] = "Lista de cursos";
 }
 <!--TODO HTML-->
-<p class="text-center"> Listado de cursos</p>
+<p class="text-center"> Mira los cursos</p>
+
+
+<!--NOTIFICACION-->
+@if(Model.Mensaje != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+     @Model.Mensaje
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+
+
+
+
+
 <div class="card">
     <div class="card-header">
         <div class="row">
@@ -16,6 +32,7 @@
             </div>
         </div>
          <div class="card-body">
+             <form method="post"> <!--Para que el post pueda borrar-->
             @if (Model.Cursos.Count() > 0)
             {
                 <br /><br />
@@ -48,6 +65,7 @@
             {
                 <p>no hay cursos disponibles</p>
             }
+            </form>
         </div>
     </div>
 </div> 
