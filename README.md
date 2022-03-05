@@ -1,1 +1,0 @@
-# ASPNetCore-ProyectoSimple
