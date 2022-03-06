@@ -1,5 +1,6 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+    
 }
 
 @media (min-width: 768px) {
@@ -14,5 +15,19 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color : #F9E4D4;
+}
+header .navbar .container {
+    background-color: #D67D3E;
+    color: black;
+    padding: 20px;
+    text-transform: uppercase;
+ 
+}
+
+.nav-link {
+    text-align: center;
+    text-size-adjust: 14px;
+    color: honeydew;
 }
